@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @shopper.name %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @shopper.email %>
+</p>
+
+<p>
+  <strong>Nif:</strong>
+  <%= @shopper.nif %>
+</p>
+
+<%= link_to 'Edit', edit_shopper_path(@shopper) %> |
+<%= link_to 'Back', shoppers_path %>
