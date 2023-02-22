@@ -22,7 +22,6 @@ services:
     volumes:
       - 'sequra-sync:/sequra:nocopy'
       - 'gems:/bundle'
-      - ~/.ssh:/home/user/.ssh:ro
 
   app:
     <<: *env_rails
@@ -30,6 +29,10 @@ services:
       - '3030:3000'
     command: bash -c "rm -f tmp/pids/server.pid && bundle exec puma --config config/puma.rb"
 
+  rspec:
+    <<: *env_rails
+    env_file: .env.test
+    command: ''
 
   elasticsearch:
     image: 'docker.elastic.co/elasticsearch/elasticsearch:8.6.1'
