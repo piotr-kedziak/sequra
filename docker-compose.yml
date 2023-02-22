@@ -1,0 +1,57 @@
+version: '3.7'
+services:
+  db:
+    image: 'postgres'
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=sequra_development
+      - network.publish_host=127.0.0.1
+    ports:
+      - '55432:5432'
+
+  sidekiq: &env_rails
+    build: .
+    env_file: .env
+    depends_on:
+      - memcached
+      - elasticsearch
+      - db
+      - redis
+    command: bundle exec sidekiq -C ./config/sidekiq.yml RAILS_ENV=development
+    volumes:
+      - 'sequra-sync:/sequra:nocopy'
+      - 'gems:/bundle'
+      - ~/.ssh:/home/user/.ssh:ro
+
+  app:
+    <<: *env_rails
+    ports:
+      - '3030:3000'
+    command: bash -c "rm -f tmp/pids/server.pid && bundle exec puma --config config/puma.rb"
+
+
+  elasticsearch:
+    image: 'docker.elastic.co/elasticsearch/elasticsearch:8.6.1'
+    container_name: elasticsearch-sequra
+    environment:
+      - xpack.security.enabled=false
+      - discovery.type=single-node
+      - network.publish_host=127.0.0.1
+      - logger.org.elasticsearch=warn
+    ports:
+      - '59200:9200'
+      - '59300:9300'
+
+  redis:
+    image: redis
+
+  memcached:
+    image: memcached
+    ports:
+      - '51212:11211'
+
+volumes:
+  sequra-sync:
+    external: true
+  gems: null

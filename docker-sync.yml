@@ -1,0 +1,12 @@
+version: "2"
+
+options:
+  verbose: true
+syncs:
+  sequra-sync:
+    src: './'
+    project_root: 'app_code'
+    sync_userid: '$HOST_USER_ID'
+    max_attempt: 30
+    sync_strategy: 'unison'
+    sync_excludes: ['.git', 'tmp/cache', 'tmp/sessions', '.DS_Store', '.gitignore', 'docker-sync.yml', 'docker-compose.yml']
