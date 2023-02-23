@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Merchant:</strong>
+  <%= @disbursement.merchant_id %>
+</p>
+
+<p>
+  <strong>Fee:</strong>
+  <%= @disbursement.fee %>
+</p>
+
+<p>
+  <strong>Calculated at:</strong>
+  <%= @disbursement.calculated_at %>
+</p>
+
+<p>
+  <strong>Calculated since:</strong>
+  <%= @disbursement.calculated_since %>
+</p>
+
+<p>
+  <strong>Calculated to:</strong>
+  <%= @disbursement.calculated_to %>
+</p>
+
+<%= link_to 'Edit', edit_disbursement_path(@disbursement) %> |
+<%= link_to 'Back', disbursements_path %>

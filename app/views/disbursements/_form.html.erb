@@ -1,0 +1,42 @@
+<%= form_with(model: disbursement, local: true) do |form| %>
+  <% if disbursement.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(disbursement.errors.count, "error") %> prohibited this disbursement from being saved:</h2>
+
+      <ul>
+        <% disbursement.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :merchant_id %>
+    <%= form.text_field :merchant_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :fee %>
+    <%= form.text_field :fee %>
+  </div>
+
+  <div class="field">
+    <%= form.label :calculated_at %>
+    <%= form.datetime_select :calculated_at %>
+  </div>
+
+  <div class="field">
+    <%= form.label :calculated_since %>
+    <%= form.datetime_select :calculated_since %>
+  </div>
+
+  <div class="field">
+    <%= form.label :calculated_to %>
+    <%= form.datetime_select :calculated_to %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
