@@ -5,6 +5,6 @@
 
 # Learn more: http://github.com/javan/whenever
 
-every :monday, at: '12pm' do
-  # runner "Task.do_something_great"
+every :monday, at: '1am' do
+  runner "CreateWeeklyDisbursementsJob.perform_later"
 end

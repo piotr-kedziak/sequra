@@ -64,8 +64,14 @@ docker-compose run --rm app bundle exec rails import:json
 docker-compose run --rm rspec bundle exec rspec
 ```
 
-* Services (job queues, cache servers, search engines, etc.)
-
 * Deployment instructions
 
-* ...
+Please run on production to make it working:
+
+```
+whenever --update-crontab
+```
+
+* TODO:
+- missing request RSpec for API endpoints
+- Add paper_trail gem :)
