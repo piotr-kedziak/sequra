@@ -1,5 +1,5 @@
 class DisbursementsController < ApplicationController
-  before_action :set_disbursement, only: %i[ show edit update destroy ]
+  before_action :set_disbursement, only: %i[show edit update destroy]
 
   # GET /disbursements or /disbursements.json
   def index
@@ -7,8 +7,7 @@ class DisbursementsController < ApplicationController
   end
 
   # GET /disbursements/1 or /disbursements/1.json
-  def show
-  end
+  def show; end
 
   # GET /disbursements/new
   def new
@@ -16,8 +15,7 @@ class DisbursementsController < ApplicationController
   end
 
   # GET /disbursements/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /disbursements or /disbursements.json
   def create
@@ -25,7 +23,7 @@ class DisbursementsController < ApplicationController
 
     respond_to do |format|
       if @disbursement.save
-        format.html { redirect_to disbursement_url(@disbursement), notice: "Disbursement was successfully created." }
+        format.html { redirect_to disbursement_url(@disbursement), notice: 'Disbursement was successfully created.' }
         format.json { render :show, status: :created, location: @disbursement }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -38,7 +36,7 @@ class DisbursementsController < ApplicationController
   def update
     respond_to do |format|
       if @disbursement.update(disbursement_params)
-        format.html { redirect_to disbursement_url(@disbursement), notice: "Disbursement was successfully updated." }
+        format.html { redirect_to disbursement_url(@disbursement), notice: 'Disbursement was successfully updated.' }
         format.json { render :show, status: :ok, location: @disbursement }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -52,19 +50,20 @@ class DisbursementsController < ApplicationController
     @disbursement.destroy
 
     respond_to do |format|
-      format.html { redirect_to disbursements_url, notice: "Disbursement was successfully destroyed." }
+      format.html { redirect_to disbursements_url, notice: 'Disbursement was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_disbursement
-      @disbursement = Disbursement.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def disbursement_params
-      params.require(:disbursement).permit(:merchant_id, :fee, :calculated_at, :calculated_since, :calculated_to)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_disbursement
+    @disbursement = Disbursement.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def disbursement_params
+    params.require(:disbursement).permit(:merchant_id, :fee, :calculated_at, :calculated_since, :calculated_to)
+  end
 end

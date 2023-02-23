@@ -23,5 +23,4 @@ RSpec.describe Disbursement, type: :model do
     it { is_expected.to validate_presence_of :fee }
     it { is_expected.to validate_numericality_of(:fee).is_greater_than(0) }
   end
-
 end

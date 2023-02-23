@@ -1,1 +1,1 @@
-json.partial! "disbursements/disbursement", disbursement: @disbursement
+json.partial! 'disbursements/disbursement', disbursement: @disbursement

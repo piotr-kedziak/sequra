@@ -12,69 +12,68 @@ require 'rails_helper'
 # of tools you can use to make these specs even more expressive, but we're
 # sticking to rails and rspec-rails APIs to keep things simple and stable.
 
-RSpec.describe "/merchants", type: :request do
-  
+RSpec.describe '/merchants', type: :request do
   # This should return the minimal set of attributes required to create a valid
   # Merchant. As you add validations to Merchant, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
-  }
+  let(:valid_attributes) do
+    skip('Add a hash of attributes valid for your model')
+  end
 
-  let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
-  }
+  let(:invalid_attributes) do
+    skip('Add a hash of attributes invalid for your model')
+  end
 
-  describe "GET /index" do
-    it "renders a successful response" do
+  describe 'GET /index' do
+    it 'renders a successful response' do
       Merchant.create! valid_attributes
       get merchants_url
       expect(response).to be_successful
     end
   end
 
-  describe "GET /show" do
-    it "renders a successful response" do
+  describe 'GET /show' do
+    it 'renders a successful response' do
       merchant = Merchant.create! valid_attributes
       get merchant_url(merchant)
       expect(response).to be_successful
     end
   end
 
-  describe "GET /new" do
-    it "renders a successful response" do
+  describe 'GET /new' do
+    it 'renders a successful response' do
       get new_merchant_url
       expect(response).to be_successful
     end
   end
 
-  describe "GET /edit" do
-    it "renders a successful response" do
+  describe 'GET /edit' do
+    it 'renders a successful response' do
       merchant = Merchant.create! valid_attributes
       get edit_merchant_url(merchant)
       expect(response).to be_successful
     end
   end
 
-  describe "POST /create" do
-    context "with valid parameters" do
-      it "creates a new Merchant" do
-        expect {
+  describe 'POST /create' do
+    context 'with valid parameters' do
+      it 'creates a new Merchant' do
+        expect do
           post merchants_url, params: { merchant: valid_attributes }
-        }.to change(Merchant, :count).by(1)
+        end.to change(Merchant, :count).by(1)
       end
 
-      it "redirects to the created merchant" do
+      it 'redirects to the created merchant' do
         post merchants_url, params: { merchant: valid_attributes }
         expect(response).to redirect_to(merchant_url(Merchant.last))
       end
     end
 
-    context "with invalid parameters" do
-      it "does not create a new Merchant" do
-        expect {
+    context 'with invalid parameters' do
+      it 'does not create a new Merchant' do
+        expect do
           post merchants_url, params: { merchant: invalid_attributes }
-        }.to change(Merchant, :count).by(0)
+        end.not_to change(Merchant, :count)
       end
 
       it "renders a successful response (i.e. to display the 'new' template)" do
@@ -84,20 +83,20 @@ RSpec.describe "/merchants", type: :request do
     end
   end
 
-  describe "PATCH /update" do
-    context "with valid parameters" do
-      let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
-      }
+  describe 'PATCH /update' do
+    context 'with valid parameters' do
+      let(:new_attributes) do
+        skip('Add a hash of attributes valid for your model')
+      end
 
-      it "updates the requested merchant" do
+      it 'updates the requested merchant' do
         merchant = Merchant.create! valid_attributes
         patch merchant_url(merchant), params: { merchant: new_attributes }
         merchant.reload
-        skip("Add assertions for updated state")
+        skip('Add assertions for updated state')
       end
 
-      it "redirects to the merchant" do
+      it 'redirects to the merchant' do
         merchant = Merchant.create! valid_attributes
         patch merchant_url(merchant), params: { merchant: new_attributes }
         merchant.reload
@@ -105,7 +104,7 @@ RSpec.describe "/merchants", type: :request do
       end
     end
 
-    context "with invalid parameters" do
+    context 'with invalid parameters' do
       it "renders a successful response (i.e. to display the 'edit' template)" do
         merchant = Merchant.create! valid_attributes
         patch merchant_url(merchant), params: { merchant: invalid_attributes }
@@ -114,15 +113,15 @@ RSpec.describe "/merchants", type: :request do
     end
   end
 
-  describe "DELETE /destroy" do
-    it "destroys the requested merchant" do
+  describe 'DELETE /destroy' do
+    it 'destroys the requested merchant' do
       merchant = Merchant.create! valid_attributes
-      expect {
+      expect do
         delete merchant_url(merchant)
-      }.to change(Merchant, :count).by(-1)
+      end.to change(Merchant, :count).by(-1)
     end
 
-    it "redirects to the merchants list" do
+    it 'redirects to the merchants list' do
       merchant = Merchant.create! valid_attributes
       delete merchant_url(merchant)
       expect(response).to redirect_to(merchants_url)

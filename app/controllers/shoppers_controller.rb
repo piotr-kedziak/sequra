@@ -1,5 +1,5 @@
 class ShoppersController < ApplicationController
-  before_action :set_shopper, only: %i[ show edit update destroy ]
+  before_action :set_shopper, only: %i[show edit update destroy]
 
   # GET /shoppers or /shoppers.json
   def index
@@ -7,8 +7,7 @@ class ShoppersController < ApplicationController
   end
 
   # GET /shoppers/1 or /shoppers/1.json
-  def show
-  end
+  def show; end
 
   # GET /shoppers/new
   def new
@@ -16,8 +15,7 @@ class ShoppersController < ApplicationController
   end
 
   # GET /shoppers/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /shoppers or /shoppers.json
   def create
@@ -25,7 +23,7 @@ class ShoppersController < ApplicationController
 
     respond_to do |format|
       if @shopper.save
-        format.html { redirect_to shopper_url(@shopper), notice: "Shopper was successfully created." }
+        format.html { redirect_to shopper_url(@shopper), notice: 'Shopper was successfully created.' }
         format.json { render :show, status: :created, location: @shopper }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -38,7 +36,7 @@ class ShoppersController < ApplicationController
   def update
     respond_to do |format|
       if @shopper.update(shopper_params)
-        format.html { redirect_to shopper_url(@shopper), notice: "Shopper was successfully updated." }
+        format.html { redirect_to shopper_url(@shopper), notice: 'Shopper was successfully updated.' }
         format.json { render :show, status: :ok, location: @shopper }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -52,19 +50,20 @@ class ShoppersController < ApplicationController
     @shopper.destroy
 
     respond_to do |format|
-      format.html { redirect_to shoppers_url, notice: "Shopper was successfully destroyed." }
+      format.html { redirect_to shoppers_url, notice: 'Shopper was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_shopper
-      @shopper = Shopper.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def shopper_params
-      params.require(:shopper).permit(:name, :email, :nif)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_shopper
+    @shopper = Shopper.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def shopper_params
+    params.require(:shopper).permit(:name, :email, :nif)
+  end
 end

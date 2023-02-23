@@ -4,10 +4,10 @@ RSpec.describe Order, type: :model do
   it_behaves_like 'timestampable'
 
   describe '.completed' do
+    subject { described_class.completed }
+
     let!(:completed_order) { create(:order, :completed) }
     let!(:not_completed_order) { create(:order, :not_completed) }
-
-    subject { described_class.completed }
 
     it 'returns completed orders' do
       expect(subject).to include(completed_order)
@@ -36,7 +36,7 @@ RSpec.describe Order, type: :model do
 
   describe '#completed?' do
     context 'with a completed order' do
-      let(:order) { build :order, :completed }
+      let(:order) { build(:order, :completed) }
 
       it 'returns true' do
         expect(order.completed?).to be_truthy
@@ -44,7 +44,7 @@ RSpec.describe Order, type: :model do
     end
 
     context 'with a not completed order' do
-      let(:order) { build :order, :not_completed }
+      let(:order) { build(:order, :not_completed) }
 
       it 'returns false' do
         expect(order.completed?).to be_falsey
@@ -54,7 +54,7 @@ RSpec.describe Order, type: :model do
 
   describe '#not_completed?' do
     context 'with a completed order' do
-      let(:order) { build :order, :completed }
+      let(:order) { build(:order, :completed) }
 
       it 'returns false' do
         expect(order.not_completed?).to be_falsey
@@ -62,7 +62,7 @@ RSpec.describe Order, type: :model do
     end
 
     context 'with a not completed order' do
-      let(:order) { build :order, :not_completed }
+      let(:order) { build(:order, :not_completed) }
 
       it 'returns true' do
         expect(order.not_completed?).to be_truthy

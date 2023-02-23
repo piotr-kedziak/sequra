@@ -1,1 +1,1 @@
-json.array! @merchants, partial: "merchants/merchant", as: :merchant
+json.array! @merchants, partial: 'merchants/merchant', as: :merchant
