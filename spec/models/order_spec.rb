@@ -19,11 +19,11 @@ RSpec.describe Order, type: :model do
   end
 
   describe '#merchant' do
-    it { is_expected.to belong_to :merchant }
+    it { is_expected.to belong_to(:merchant).touch(true) }
   end
 
   describe '#shopper' do
-    it { is_expected.to belong_to :shopper }
+    it { is_expected.to belong_to(:shopper).touch(true) }
   end
 
   describe '#amount' do
